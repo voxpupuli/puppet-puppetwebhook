@@ -1,0 +1,23 @@
+---
+.gitlab-ci.yml:
+  delete: true
+appveyor.yml:
+  delete: true
+.travis.yml:
+  docker_sets:
+    - set: ubuntu1804-64
+    - set: ubuntu1604-64
+    - set: ubuntu1404-64
+    - set: centos7-64
+    - set: centos6-64
+    - set: debian9-64
+    - set: debian8-64
+  notifications:
+    irc:
+      on_success: always
+      on_failure: always
+      channels:
+        - "chat.freenode.org#voxpupuli-notifications"
+  secure: '0EBUR60jTMljMKtTZCKOLBdYTNqpeVazUXwJ9HcYJq0hR4k3bIVAO79Q5It78Qycqhren/XBM48+tEcUOcBV6eFcqLBGHO94TIoYLk6g+QmMpfI8Bzp8oFteLMs3HAE6H0j+BDamc8ppfTjxBUq1bxG9Axlw3rafxeOrF+CJnOXB1tyOvyv7/EOsF52d4yWDRqg0PlmzSFXAzdt7RN/7Jb/9HCHP73GPJwx+fEav9KTkcCWJsKhe3vYrXlNPjqJb4T1lm10W7TE0PRricgasjsg0P0KMAjvwWpXbAySWxx171HC6V0nZY9ORp8Pgvx67idX+XxUXTA/X0rf8IW1GXDF0O+VOfbPrxQRgFG+B/wZhVosOyfJnPlYlfDODQI7GgbGFNf5mh8qno9KqAHBDyd0uzTum1QY+NpOvEMN2wHv4BNTmwgpkLtdsWBrEVu71WS8XMiAjaNkNf85F3K9A7uuefG4LckqhHe3yAlPQ9mPv2CaAw3XKQdwJxULQJlwtFZmTBWPaRyPyHr0v3Uq0PCvXfKwvy1OQlvwq2RUInCPMbN7aroTv6ywBjg+F6+R0kirApXSyiqNrdcw+nVr+sDopDCKLp12WRzE5yIwO7Gzvw6w4dbhaSRKag6jJdNTjJRZtDtVc2CkmYY7TDtMxI0miTyLTLR7gXjM9Z6Z4690='
+spec/spec_helper.rb:
+  mock_with: ':rspec'
