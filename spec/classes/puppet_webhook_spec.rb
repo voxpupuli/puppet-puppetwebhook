@@ -5,7 +5,11 @@ describe 'puppet_webhook' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
+      let(:params) {{ pkg_provider: 'puppet_gem' }}
+
       it { is_expected.to compile }
+      it { is_expected.to contain_class('puppet_webhook::install') }
+      it { is_expected.to contain_package('puppet_webhook').with_provider('puppet_gem') }
     end
   end
 end
