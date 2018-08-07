@@ -1,0 +1,2 @@
+---
+puppet_webhook::pkg_provider: 'puppet_gem'
