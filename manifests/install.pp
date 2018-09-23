@@ -1,12 +1,17 @@
-# A description of what this class does
+# Installs the puppet_webhook gem and dependencies
+# into the system ruby or puppet-agent ruby environment.
 #
-# @summary A short summary of the purpose of this class
+# @summary Installs the puppet_webhook gem 
 #
-# @example
-#   include puppet_webhook::install
+# @api private
+#
+# @author Vox Pupuli <voxpupuli@groups.io>
+#
 class puppet_webhook::install {
+  assert_private()
+
   package { 'puppet_webhook':
     ensure   => 'installed',
-    provider => 'puppet_gem'
+    provider => $puppet_webhook::pkg_provider,
   }
 }

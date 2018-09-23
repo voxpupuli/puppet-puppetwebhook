@@ -6,6 +6,8 @@ describe 'puppet_webhook' do
       let(:facts) { os_facts }
 
       it { is_expected.to compile }
+      it { is_expected.to contain_class('puppet_webhook::install') }
+      it { is_expected.to contain_package('puppet_webhook').with_provider('puppet_gem') }
     end
   end
 end
