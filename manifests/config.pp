@@ -3,6 +3,6 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include puppet_webhook::config
-class puppet_webhook::config {
+#   include puppetwebhook::config
+class puppetwebhook::config {
 }
