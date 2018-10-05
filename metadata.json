@@ -6,7 +6,10 @@
   "license": "Apache-2.0",
   "source": "git@github.com:voxpupuli/puppet-puppet_webhook.git",
   "dependencies": [
-
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 4.10.0 < 6.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
