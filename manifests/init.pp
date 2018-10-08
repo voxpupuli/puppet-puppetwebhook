@@ -6,13 +6,13 @@
 # @author Vox Pupuli <voxpupuli@groups.io>
 #
 # @example
-#   include puppet_webhook
+#   include puppetwebhook
 #
-# @param pkg_provider Which provider to install puppet_webhook into
+# @param pkg_provider Which provider to install puppetwebhook into
 #
-class puppet_webhook(
+class puppetwebhook(
   Enum['gem', 'puppet_gem'] $pkg_provider,
 ) {
-  contain 'puppet_webhook::install'
-  contain 'puppet_webhook::config'
+  contain 'puppetwebhook::install'
+  contain 'puppetwebhook::config'
 }

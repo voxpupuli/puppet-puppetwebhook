@@ -1,17 +1,17 @@
-# Installs the puppet_webhook gem and dependencies
+# Installs the puppetwebhook gem and dependencies
 # into the system ruby or puppet-agent ruby environment.
 #
-# @summary Installs the puppet_webhook gem 
+# @summary Installs the puppetwebhook gem 
 #
 # @api private
 #
 # @author Vox Pupuli <voxpupuli@groups.io>
 #
-class puppet_webhook::install {
+class puppetwebhook::install {
   assert_private()
 
   package { 'puppet_webhook':
     ensure   => 'installed',
-    provider => $puppet_webhook::pkg_provider,
+    provider => $puppetwebhook::pkg_provider,
   }
 }

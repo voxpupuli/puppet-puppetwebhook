@@ -1,2 +1,2 @@
 ---
-puppet_webhook::pkg_provider: 'puppet_gem'
+puppetwebhook::pkg_provider: 'puppet_gem'
