@@ -5,6 +5,7 @@ describe 'Puppetwebhook::Serverconfig' do
 
   serverconfig = {
     'server_type' => 'simple',
+    'host' => '0.0.0.0',
     'logfile' => '/foo/bar/log',
     'loglevel' => 'WARN',
     'pidfile' => '/foo/bar/pidfile',

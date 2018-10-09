@@ -17,19 +17,38 @@ Gemfile:
         from_env: BEAKER_HOSTGENERATOR_VERSION
       - gem: beaker-rspec
         from_env: BEAKER_RSPEC_VERSION
+      - gem: beaker-puppet
+        from_env: BEAKER_PUPPET_VERSION
 .gitlab-ci.yml:
   delete: true
 appveyor.yml:
   delete: true
 .travis.yml:
+  docker_defaults:
+    rvm: 2.4.4
+    sudo: required
+    dist: trusty
+    services: docker
+    env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=@@SET@@ BEAKER_TESTMODE=@@TESTMODE@@
   docker_sets:
-    - set: ubuntu1804-64
-    - set: ubuntu1604-64
-    - set: ubuntu1404-64
-    - set: centos7-64
-    - set: centos6-64
-    - set: debian9-64
-    - set: debian8-64
+    - set: ubuntu1804-64{hypervisor=docker}
+      options:
+        bundler_args: '--without release'
+    - set: ubuntu1604-64{hypervisor=docker}
+      options:
+        bundler_args: '--without release'
+    - set: centos7-64{hypervisor=docker}
+      options:
+        bundler_args: '--without release'
+    - set: centos6-64{hypervisor=docker}
+      options:
+        bundler_args: '--without release'
+    - set: debian9-64{hypervisor=docker}
+      options:
+        bundler_args: '--without release'
+    - set: debian8-64{hypervisor=docker}
+      options:
+        bundler_args: '--without release'
   notifications:
     irc:
       on_success: always
