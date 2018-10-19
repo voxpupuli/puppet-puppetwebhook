@@ -1,0 +1,27 @@
+<%- | 
+  String $user,
+  Stdlib::Absolutepath $webhook_bin,
+  Stdlib::Absolutepath $webhook_pidfile,
+| -%>
+[Unit]
+Description=R10K Webhook Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/sysconfig/webhook
+RuntimeDirectory=puppet_webhook
+User=<%= $user %>
+PIDFile=<%= $webhook_pidfile %>
+TimeoutStartSec=90
+TimeoutStopSec=30
+RestartSec=10000
+
+ExecStart=<%= $webhook_bin %> -c /etc/puppet_webhook/server.yml
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target

@@ -14,7 +14,9 @@ class puppetwebhook(
   Enum['gem', 'puppet_gem'] $pkg_provider,
   Puppetwebhook::Serverconfig $server_cfg,
   Puppetwebhook::Appconfig $app_cfg,
+  Stdlib::Absolutepath $binfile,
 ) {
   contain 'puppetwebhook::install'
   contain 'puppetwebhook::config'
+  contain 'puppetwebhook::service'
 }

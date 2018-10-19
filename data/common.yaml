@@ -10,10 +10,11 @@ puppetwebhook::server_cfg:
   enable_ssl: false
 puppetwebhook::app_cfg:
   protected: true
-  user: 'puppet'
+  user: 'root'
   pass: 'puppet'
   use_mcollective: false
   chatops: false
   default_branch: 'production'
   r10k_deploy_arguments: '-pv'
   command_prefix: '0022'
+puppetwebhook::binfile: '/opt/puppetlabs/puppet/bin/puppet_webhook'
