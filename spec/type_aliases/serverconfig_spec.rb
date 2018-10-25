@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe 'Puppetwebhook::Serverconfig' do
-  let(:pre_condition) { 'include stdlib' }
-
   serverconfig = {
     'server_type' => 'simple',
     'host' => '0.0.0.0',

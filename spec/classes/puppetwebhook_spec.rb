@@ -26,8 +26,8 @@ describe 'puppetwebhook' do
           is_expected.to contain_file("/etc/puppet_webhook/#{cfg}.yml").with(
             ensure: 'file',
             owner: 'root',
-            group: 'root',
-            mode: '0644',
+            group: 'puppet_webhook',
+            mode: '0640',
           )
         }
       end
