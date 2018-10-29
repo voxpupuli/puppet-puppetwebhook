@@ -15,6 +15,8 @@ class puppetwebhook(
   Puppetwebhook::Serverconfig $server_cfg,
   Puppetwebhook::Appconfig $app_cfg,
   Stdlib::Absolutepath $binfile,
+  String $webhook_user,
+  String $webhook_group,
 ) {
   contain 'puppetwebhook::install'
   contain 'puppetwebhook::config'

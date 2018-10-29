@@ -10,9 +10,8 @@ class puppetwebhook::service {
   systemd::unit_file { 'puppet_webhook.service':
     ensure  => 'present',
     content => epp('puppetwebhook/puppet_webhook.service.epp', {
-        'user'            => $puppetwebhook::app_cfg['user'],
-        'webhook_bin'     => $puppetwebhook::binfile,
-        'webhook_pidfile' => $puppetwebhook::server_cfg['pidfile']
+        'user'        => $puppetwebhook::webhook_user,
+        'webhook_bin' => $puppetwebhook::binfile,
       }
     ),
   }

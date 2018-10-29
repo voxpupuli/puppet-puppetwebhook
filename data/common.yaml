@@ -1,12 +1,12 @@
 ---
 puppetwebhook::pkg_provider: 'puppet_gem'
 puppetwebhook::server_cfg:
-  server_type: 'daemon'
+  server_type: 'simple'
   host: '0.0.0.0'
-  logfile: '/var/log/webhook.log'
+  logfile: '/etc/puppet_webhook/webhook.log'
   loglevel: 'WARN'
   pidfile: '/var/run/puppet_webhook.pid'
-  port: 8081
+  port: 8088
   enable_ssl: false
 puppetwebhook::app_cfg:
   protected: true
@@ -18,3 +18,5 @@ puppetwebhook::app_cfg:
   r10k_deploy_arguments: '-pv'
   command_prefix: '0022'
 puppetwebhook::binfile: '/opt/puppetlabs/puppet/bin/puppet_webhook'
+puppetwebhook::webhook_user: 'puppet_webhook'
+puppetwebhook::webhook_group: 'puppet_webhook'

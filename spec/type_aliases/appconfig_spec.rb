@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe 'Puppetwebhook::Appconfig' do
-  let(:pre_condition) { 'include stdlib' }
-
   appconfig = {
     'protected' => true,
     'user' => 'foo',
