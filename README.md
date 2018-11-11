@@ -62,7 +62,7 @@ Currently does not support the following:
 
 ## Development
 
-Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for instructions regarding development environments and testing.
+Please see the [CONTRIBUTING.md](.github/CONTRIBUTING.md) file for instructions regarding development environments and testing.
 
 ## Authors
 
