@@ -1,8 +1,13 @@
 
 # puppetwebhook
 
-Puppet module for installing and managing Vox Pupuli's `puppet_webhook` API Server.
+[![Travis branch](https://img.shields.io/travis/voxpupuli/puppet-puppetwebhook/master.svg?style=flat-square)](https://travis-ci.org/voxpupuli/puppet-puppetwebhook)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppetlabs.com/puppet/puppetwebhook)
+[![Puppet Forge](https://img.shields.io/puppetforge/dt/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppet.com/puppet/puppetwebhook)
+[![Puppet Forge](https://img.shields.io/puppetforge/e/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppet.com/puppet/puppetwebhook)
+[![Puppet Forge](https://img.shields.io/puppetforge/f/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppet.com/puppet/puppetwebhook)
 
+Puppet module for installing and managing Vox Pupuli's `puppet_webhook` API Server.
 
 #### Table of Contents
 
@@ -22,18 +27,43 @@ puppet-puppetwebhook will install the `puppet_webhook` gem, configure the gem, a
 
 ## Setup
 
-### Beginning with puppetwebhook
+### The Module manages the following:
+* [puppet_webhook](https://github.com/voxpupuli/puppet_webhook) API server Ruby gem
+* puppet_webhook configuration
+* puppet_webhook service
 
 ## Usage
 
+This module provides one public class `puppetwebhook`.
+
+``` puppet
+include puppetwebhook
+```
+
+With all default parameter values, this installs, enables, and starts the
+`puppet_webhook` service. The package provider, user/group that owns the process
+and files, and the configuration options themselves.
+
+Install `puppet_webhook` as a general ruby gem instead of in the Puppet ruby environment
+``` puppet
+class { 'puppetwebhook':
+  pkg_provider => 'gem',
+}
+```
+
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
+Currently does not support the following:
+
+* Installation of RPM or DEB packages (planned)
+* Enable/Disable Service management (planned)
+* Enable/Disable Package management (planned)
+* Expects SystemD, no SysVInit or Upstart service is created.
 
 ## Development
 
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
+Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for instructions regarding development environments and testing.
 
-## Release Notes/Contributors/Etc. **Optional**
+## Authors
 
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+* Vox Pupuli: [voxpupuli@groups.io](mailto:voxpupuli@groups.io)
