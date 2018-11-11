@@ -1,9 +1,11 @@
-# A description of what this class does
+# This class configures the puppet_webhook API server.
 #
-# @summary A short summary of the purpose of this class
+# @summary Configures puppet_webhook API server.
 #
-# @example
-#   include puppetwebhook::config
+# @author Vox Pupuli <voxpupuli@groups.io>
+#
+# @api private
+#
 class puppetwebhook::config {
   assert_private()
 

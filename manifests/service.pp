@@ -1,9 +1,12 @@
-# A description of what this class does
+# This class sets up the SystemD service file, performs a daemon reload,
+# enables and starts the webhook service.
 #
-# @summary A short summary of the purpose of this class
+# @summary Manage the webhook service
 #
-# @example
-#   include puppetwebhook::service
+# @author Vox Pupuli <voxpupuli@groups.io>
+#
+# @api private
+#
 class puppetwebhook::service {
   include systemd
 
