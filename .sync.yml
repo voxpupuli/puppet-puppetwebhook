@@ -1,5 +1,15 @@
 ---
 Gemfile:
+  optional:
+    ':release':
+      - gem: 'pdk'
+    ':development':
+      - gem: 'github_changelog_generator'
+        git: 'https://github.com/skywinder/github-changelog-generator'
+        ref: '20ee04ba1234e9e83eb2ffb5056e23d641c7a018'
+        condition: "Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.2.2')"
+      - gem: 'voxpupuli-release'
+        git: 'https://github.com/voxpupuli/voxpupuli-release-gem'
   required:
     ':system_tests':
       - gem: 'puppet-module-posix-system-r#{minor_version}'
@@ -71,6 +81,9 @@ appveyor.yml:
         bundler_args: '--without release'
         env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=@@SET@@ BEAKER_TESTMODE=@@TESTMODE@@
         rvm: 2.5.1
+  includes:
+    - env: PUPPET_VERSION="~> 5.0" CHECK=build DEPLOY_TO_FORGE=yes
+      rvm: 2.4.4
   notifications:
     irc:
       on_success: always
@@ -80,3 +93,8 @@ appveyor.yml:
   secure: '0EBUR60jTMljMKtTZCKOLBdYTNqpeVazUXwJ9HcYJq0hR4k3bIVAO79Q5It78Qycqhren/XBM48+tEcUOcBV6eFcqLBGHO94TIoYLk6g+QmMpfI8Bzp8oFteLMs3HAE6H0j+BDamc8ppfTjxBUq1bxG9Axlw3rafxeOrF+CJnOXB1tyOvyv7/EOsF52d4yWDRqg0PlmzSFXAzdt7RN/7Jb/9HCHP73GPJwx+fEav9KTkcCWJsKhe3vYrXlNPjqJb4T1lm10W7TE0PRricgasjsg0P0KMAjvwWpXbAySWxx171HC6V0nZY9ORp8Pgvx67idX+XxUXTA/X0rf8IW1GXDF0O+VOfbPrxQRgFG+B/wZhVosOyfJnPlYlfDODQI7GgbGFNf5mh8qno9KqAHBDyd0uzTum1QY+NpOvEMN2wHv4BNTmwgpkLtdsWBrEVu71WS8XMiAjaNkNf85F3K9A7uuefG4LckqhHe3yAlPQ9mPv2CaAw3XKQdwJxULQJlwtFZmTBWPaRyPyHr0v3Uq0PCvXfKwvy1OQlvwq2RUInCPMbN7aroTv6ywBjg+F6+R0kirApXSyiqNrdcw+nVr+sDopDCKLp12WRzE5yIwO7Gzvw6w4dbhaSRKag6jJdNTjJRZtDtVc2CkmYY7TDtMxI0miTyLTLR7gXjM9Z6Z4690='
 spec/spec_helper.rb:
   mock_with: ':rspec'
+Rakefile:
+  requires:
+    - 'voxpupuli/release/rake_tasks'
+    - 'puppet-strings/tasks'
+
