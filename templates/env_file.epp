@@ -1,0 +1,4 @@
+<%- | 
+  Stdlib::Absolutepath $r10k_path
+| -%>
+PATH=$PATH:<%= $r10k_path %>

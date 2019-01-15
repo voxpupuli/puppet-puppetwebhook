@@ -9,27 +9,38 @@ describe 'puppetwebhook' do
       it { is_expected.to contain_class('puppetwebhook::install') }
       it { is_expected.to contain_class('puppetwebhook::config') }
       it { is_expected.to contain_class('puppetwebhook::service') }
-      it {
+      it 'contains webhook package' do
         is_expected.to contain_package('puppet_webhook').with(
           ensure: 'installed',
           provider: 'puppet_gem',
         )
-      }
-      it {
+      end
+
+      it 'contains webhook dir' do
         is_expected.to contain_file('/etc/puppet_webhook').with(
           ensure: 'directory',
           require: 'Package[puppet_webhook]',
         )
-      }
+      end
+
+      it 'contains env file' do
+        case facts[:os]['family']
+        when 'Debian'
+          is_expected.to contain_file('/etc/default/puppet_webhook')
+        when %r{(RedHat|Suse)}
+          is_expected.to contain_file('/etc/sysconfig/puppet_webhook')
+        end
+      end
+
       ['server', 'app'].each do |cfg|
-        it {
+        it "contains #{cfg} file" do
           is_expected.to contain_file("/etc/puppet_webhook/#{cfg}.yml").with(
             ensure: 'file',
             owner: 'root',
             group: 'puppet_webhook',
             mode: '0640',
           )
-        }
+        end
       end
     end
   end

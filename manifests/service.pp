@@ -15,6 +15,7 @@ class puppetwebhook::service {
     content => epp('puppetwebhook/puppet_webhook.service.epp', {
         'user'        => $puppetwebhook::webhook_user,
         'webhook_bin' => $puppetwebhook::binfile,
+        'env_path'    => $puppetwebhook::envfile_path,
       }
     ),
   }

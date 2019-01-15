@@ -42,5 +42,9 @@ class puppetwebhook::config {
       content => to_yaml($puppetwebhook::app_cfg),
       notify  => Service['puppet_webhook'],
       ;
+    "${puppetwebhook::envfile_path}/puppet_webhook":
+      ensure  => file,
+      content => epp('puppetwebhook/env_file.epp', { 'r10k_path' => $puppetwebhook::r10k_path}),
+      ;
   }
 }
