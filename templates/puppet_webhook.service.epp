@@ -1,6 +1,7 @@
 <%- | 
   String $user,
   Stdlib::Absolutepath $webhook_bin,
+  String $env_path
 | -%>
 [Unit]
 Description=R10K Webhook Service
@@ -8,7 +9,7 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-EnvironmentFile=-/etc/sysconfig/webhook
+EnvironmentFile=-<%= $env_path %>/puppet_webhook
 RuntimeDirectory=puppet_webhook
 User=<%= $user %>
 TimeoutStartSec=90

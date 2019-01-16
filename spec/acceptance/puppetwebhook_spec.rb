@@ -69,4 +69,14 @@ describe 'puppetwebhook' do
   describe service('puppet_webhook') do
     it { is_expected.to be_running }
   end
+
+  if os[:family] =~ %r{(redhat|suse)}
+    describe file('/etc/sysconfig/puppet_webhook') do
+      it { is_expected.to be_file }
+    end
+  elsif os[:family] == 'debian'
+    describe file('/etc/default/puppet_webhook') do
+      it { is_expected.to be_file }
+    end
+  end
 end

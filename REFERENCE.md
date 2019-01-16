@@ -71,13 +71,10 @@ Hash of Server configuration options
 
 Options:
 
-* **:server_type** `Enum['simple', 'daemon']`: Run the API server
-as a daemon or not
-* **:host** `Stdlib::IP::Address`: IP address to the API server
-will listen on.
+* **:server_type** `Enum['simple', 'daemon']`: Run the API server as a daemon or not
+* **:host** `Stdlib::IP::Address`: IP address to the API server will listen on.
 * **:logfile** `Stdlib::Absolutepath`: Path to log file.
-* **:loglevel** `Enum['WARN', 'INFO', 'DEBUG', 'ERROR']`: Log level
-of the server.
+* **:loglevel** `Enum['WARN', 'INFO', 'DEBUG', 'ERROR']`: Log level of the server.
 * **:pidfile** `Stdlib::Absolutepath`: Path to the PID file.
 * **:port** `Stdlib::Port`: Port the API server will listen on.
 * **:enable_ssl** `Boolean`: Enable SSL or not.
@@ -96,23 +93,16 @@ Options:
 * **:protected** `Boolean`: Run API server in protected mode.
 * **:user** `String[1]`: API server auth user.
 * **:pass** `String[1]`: API server auth password.
-* **:client_cfg** `Stdlib::Absolutepath`: MCollective client config.
-Optional.
-* **:client_timeout** `String[1]`: MCollective client timeout.
-Optional.
-* **:use_mco_ruby** `Boolean`: Use MCollective ruby client.
-Optional.
+* **:client_cfg** `Stdlib::Absolutepath`: MCollective client config. Optional.
+* **:client_timeout** `String[1]`: MCollective client timeout. Optional.
+* **:use_mco_ruby** `Boolean`: Use MCollective ruby client. Optional.
 * **:use_mcollective** `Boolean`: Whether to use MCollective or not.
-* **:discovery_timeout** `String[1]`: MCollective discovery timeout.
-Optional.
+* **:discovery_timeout** `String[1]`: MCollective discovery timeout. Optional.
 * **:chatops** `Boolean`: Integrate a ChatOps tool or not. Default: false.
-* **:chatops_service** `Enum['slack', 'rocketchat']`: Which chatops
-to use. Optional.
-* **:chatops_channel** `Pattern[/\A#**/]`: Channel to post to.
-Optional.
+* **:chatops_service** `Enum['slack', 'rocketchat']`: Which chatops to use. Optional.
+* **:chatops_channel** `Pattern[/\A#**/]`: Channel to post to. Optional.
 * **:chatops_user** `String[1]`: User to post as. Optional.
-* **:chatops_url** `Stdlib::HTTLUrl`: URL to post chatops messages
-to. Optional.
+* **:chatops_url** `Stdlib::HTTLUrl`: URL to post chatops messages to. Optional.
 * **:default_branch** `String[1]`: Default R10K branch to use. Default: production
 * **:ignore_environments** `Array[String[1]]`: R10K Environment to ignore. Optional.
 * **:prefix_command** `String[1]`: Command that will generate an R10K prefix. Optional.
@@ -120,8 +110,8 @@ to. Optional.
 * **:allow_uppercase** `Boolean`: Allow uppercase characters. Optional.
 * **:command_prefix** `String[1]`: Command to execute before R10K.
 * **:prefix** `String[1]`: R10K prefix. Optional.
-* **:github_secret** `String[1]`: Used to verify the signature on a repo. Currently
-only supported for Github repos. Optional.
+* **:github_secret** `String[1]`: Used to verify the signature on a repo. Currently only
+supported for Github repos. Optional.
 * **:repository_events** `Array`: Array of webhook events to ignore. Optional.
 
 ##### `binfile`
@@ -129,6 +119,12 @@ only supported for Github repos. Optional.
 Data type: `Stdlib::Absolutepath`
 
 Path to the puppet_webhook binary
+
+##### `r10k_path`
+
+Data type: `Stdlib::Absolutepath`
+
+Path to r10k binary folder. Defaults to `/opt/puppetlabs/puppet/bin`
 
 ##### `webhook_user`
 

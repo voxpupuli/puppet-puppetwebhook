@@ -20,3 +20,4 @@ puppetwebhook::app_cfg:
 puppetwebhook::binfile: '/opt/puppetlabs/puppet/bin/puppet_webhook'
 puppetwebhook::webhook_user: 'puppet_webhook'
 puppetwebhook::webhook_group: 'puppet_webhook'
+puppetwebhook::r10k_path: '/opt/puppetlabs/puppet/bin'
