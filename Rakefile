@@ -27,7 +27,7 @@ def changelog_future_release
   returnVal = JSON.load(File.read('metadata.json'))['version']
   raise "unable to find the future_release (version) in metadata.json" if returnVal.nil?
   puts "GitHubChangelogGenerator future_release:#{returnVal}"
-  returnVal
+  "v#{returnVal}"
 end
 
 PuppetLint.configuration.send('disable_relative')
