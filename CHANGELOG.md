@@ -2,9 +2,17 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v1.0.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/1.0.0) (2018-11-10)
+## [v1.1.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/v1.1.0) (2019-01-17)
 
-[Full Changelog](https://github.com/voxpupuli/puppet-puppetwebhook/compare/b89a1244b8fc404fb851dd34779785ff653be861...1.0.0)
+[Full Changelog](https://github.com/voxpupuli/puppet-puppetwebhook/compare/v1.0.0...v1.1.0)
+
+### Fixed
+
+- Ensure appropriate ENV file exists for setting puppet\_webhook service ENV Vars [\#11](https://github.com/voxpupuli/puppet-puppetwebhook/pull/11) ([dhollinger](https://github.com/dhollinger))
+
+## [v1.0.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/v1.0.0) (2018-11-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-puppetwebhook/compare/b89a1244b8fc404fb851dd34779785ff653be861...v1.0.0)
 
 ### Added
 
