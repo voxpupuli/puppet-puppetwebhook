@@ -63,6 +63,12 @@ Data type: `Enum['gem', 'puppet_gem']`
 
 Which provider to install puppetwebhook into
 
+##### `pkg_version`
+
+Data type: `String`
+
+Install a specific version of the puppet_webhook
+
 ##### `server_cfg`
 
 Data type: `Puppetwebhook::Serverconfig`
@@ -137,4 +143,10 @@ User to run puppet_webhook as
 Data type: `String`
 
 Group to run puppet_webhook as
+
+##### `envfile_path`
+
+Data type: `Stdlib::Absolutepath`
+
+
 

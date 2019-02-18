@@ -11,7 +11,7 @@ class puppetwebhook::install {
   assert_private()
 
   package { 'puppet_webhook':
-    ensure   => 'installed',
+    ensure   => $puppetwebhook::pkg_version,
     provider => $puppetwebhook::pkg_provider,
   }
 }
