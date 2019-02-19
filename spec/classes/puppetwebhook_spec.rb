@@ -15,6 +15,13 @@ describe 'puppetwebhook' do
           provider: 'puppet_gem',
         )
       end
+      context 'when pkg_version is specified' do
+        let(:params) { { 'pkg_version' => '1.6.2' } }
+
+        it 'installs the correct version' do
+          is_expected.to contain_package('puppet_webhook').with_ensure('1.6.2')
+        end
+      end
 
       it 'contains webhook dir' do
         is_expected.to contain_file('/etc/puppet_webhook').with(

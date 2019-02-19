@@ -27,11 +27,13 @@
 #
 # @param pkg_provider
 #   Which provider to install puppetwebhook into
+# @param pkg_version
+#   Install a specific version of the puppet_webhook
 # @param server_cfg
 #   Hash of Server configuration options
-# @option server_cfg [Enum['simple', 'daemon']] :server_type 
+# @option server_cfg [Enum['simple', 'daemon']] :server_type
 #   Run the API server as a daemon or not
-# @option server_cfg [Stdlib::IP::Address] :host 
+# @option server_cfg [Stdlib::IP::Address] :host
 #   IP address to the API server will listen on.
 # @option server_cfg [Stdlib::Absolutepath] :logfile
 #   Path to log file.
@@ -106,6 +108,7 @@
 #   Group to run puppet_webhook as
 #
 class puppetwebhook(
+  String $pkg_version,
   Enum['gem', 'puppet_gem'] $pkg_provider,
   Puppetwebhook::Serverconfig $server_cfg,
   Puppetwebhook::Appconfig $app_cfg,

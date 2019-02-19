@@ -1,4 +1,5 @@
 ---
+puppetwebhook::pkg_version: 'installed'
 puppetwebhook::pkg_provider: 'puppet_gem'
 puppetwebhook::server_cfg:
   server_type: 'simple'
