@@ -16,7 +16,7 @@ describe 'puppetwebhook::service' do
           enable: true,
           hasstatus: true,
           hasrestart: true,
-        ).that_requires(['Package[puppet_webhook]', 'Systemd::Unit_file[puppet_webhook.service]'])
+        ).that_subscribes_to(['Package[puppet_webhook]', 'Systemd::Unit_file[puppet_webhook.service]'])
       }
     end
   end

@@ -25,7 +25,7 @@ class puppetwebhook::service {
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    require    => [
+    subscribe  => [
       Package['puppet_webhook'],
       Systemd::Unit_file['puppet_webhook.service'],
     ],
