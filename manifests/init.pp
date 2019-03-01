@@ -90,7 +90,7 @@
 # @option app_cfg [Boolean] :allow_uppercase
 #   Allow uppercase characters. Optional.
 # @option app_cfg [String[1]] :command_prefix
-#   Command to execute before R10K.
+#   Command to execute before R10K. For example `umask 0022;`. Optional.
 # @option app_cfg [String[1]] :prefix
 #   R10K prefix. Optional.
 # @option app_cfg [String[1]] :github_secret
