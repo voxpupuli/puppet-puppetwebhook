@@ -114,7 +114,7 @@ Options:
 * **:prefix_command** `String[1]`: Command that will generate an R10K prefix. Optional.
 * **:r10k_deploy_arguments** `String[1]`: Arguments to pass to R10K.
 * **:allow_uppercase** `Boolean`: Allow uppercase characters. Optional.
-* **:command_prefix** `String[1]`: Command to execute before R10K.
+* **:command_prefix** `String[1]`: Command to execute before R10K. For example `umask 0022;`. Optional.
 * **:prefix** `String[1]`: R10K prefix. Optional.
 * **:github_secret** `String[1]`: Used to verify the signature on a repo. Currently only
 supported for Github repos. Optional.

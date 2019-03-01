@@ -61,7 +61,6 @@ describe 'puppetwebhook' do
         'chatops' => false,
         'default_branch' => 'production',
         'r10k_deploy_arguments' => '-pv',
-        'command_prefix' => '0022',
       )
     end
   end

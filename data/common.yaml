@@ -17,7 +17,6 @@ puppetwebhook::app_cfg:
   chatops: false
   default_branch: 'production'
   r10k_deploy_arguments: '-pv'
-  command_prefix: '0022'
 puppetwebhook::binfile: '/opt/puppetlabs/puppet/bin/puppet_webhook'
 puppetwebhook::webhook_user: 'puppet_webhook'
 puppetwebhook::webhook_group: 'puppet_webhook'
