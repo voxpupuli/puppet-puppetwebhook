@@ -23,7 +23,7 @@ describe 'Puppetwebhook::Appconfig' do
     'command_prefix' => 'bar',
     'prefix' => 'test',
     'github_secret' => 'secret',
-    'repository_events' => [],
+    'repository_events' => []
   }
 
   it { is_expected.to allow_value(appconfig) }

@@ -42,7 +42,7 @@ describe 'puppetwebhook' do
         'loglevel' => 'WARN',
         'pidfile' => '/var/run/puppet_webhook.pid',
         'port' => 8088,
-        'enable_ssl' => false,
+        'enable_ssl' => false
       )
     end
   end
@@ -60,7 +60,7 @@ describe 'puppetwebhook' do
         'use_mcollective' => false,
         'chatops' => false,
         'default_branch' => 'production',
-        'r10k_deploy_arguments' => '-pv',
+        'r10k_deploy_arguments' => '-pv'
       )
     end
   end

@@ -11,7 +11,7 @@ describe 'Puppetwebhook::Serverconfig' do
     'enable_ssl' => true,
     'ssl_verify' => true,
     'ssl_cert' => '/foo/bar/cert',
-    'ssl_key' => '/foo/bar/key',
+    'ssl_key' => '/foo/bar/key'
   }
 
   it { is_expected.to allow_value(serverconfig) }

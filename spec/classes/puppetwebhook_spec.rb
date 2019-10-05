@@ -12,7 +12,7 @@ describe 'puppetwebhook' do
       it 'contains webhook package' do
         is_expected.to contain_package('puppet_webhook').with(
           ensure: 'installed',
-          provider: 'puppet_gem',
+          provider: 'puppet_gem'
         )
       end
       context 'when pkg_version is specified' do
@@ -26,7 +26,7 @@ describe 'puppetwebhook' do
       it 'contains webhook dir' do
         is_expected.to contain_file('/etc/puppet_webhook').with(
           ensure: 'directory',
-          require: 'Package[puppet_webhook]',
+          require: 'Package[puppet_webhook]'
         )
       end
 
@@ -39,13 +39,13 @@ describe 'puppetwebhook' do
         end
       end
 
-      ['server', 'app'].each do |cfg|
+      %w[server app].each do |cfg|
         it "contains #{cfg} file" do
           is_expected.to contain_file("/etc/puppet_webhook/#{cfg}.yml").with(
             ensure: 'file',
             owner: 'root',
             group: 'puppet_webhook',
-            mode: '0640',
+            mode: '0640'
           )
         end
       end
