@@ -108,17 +108,19 @@
 #   Group to run puppet_webhook as
 #
 class puppetwebhook(
-  String $pkg_version,
-  Enum['gem', 'puppet_gem'] $pkg_provider,
-  Puppetwebhook::Serverconfig $server_cfg,
-  Puppetwebhook::Appconfig $app_cfg,
-  Stdlib::Absolutepath $binfile,
-  Stdlib::Absolutepath $r10k_path,
-  Stdlib::Absolutepath $envfile_path,
-  String $webhook_user,
-  String $webhook_group,
+  Hash $app_cfg = {'production' => {'protected' => true, 'user' => 'puppet', 'pass' => 'puppet', 'chatops' => false, 'default_branch' => 'production', 'ignore_environments' => [], 'allow_uppercase' => true, 'loglevel' => 'info'}},
+  Boolean $manage_package = true,
+  Boolean $manage_repo = true,
 ) {
-  contain 'puppetwebhook::install'
-  contain 'puppetwebhook::config'
-  contain 'puppetwebhook::service'
+  if $manage_package {
+    contain puppetwebhook::install
+    Class['puppetwebhook::install']
+    -> Class['puppetwebhook::config']
+  }
+  contain puppetwebhook::config
+  contain puppetwebhook::service
+
+
+  Class['puppetwebhook::config']
+  ~> Class['puppetwebhook::service']
 }

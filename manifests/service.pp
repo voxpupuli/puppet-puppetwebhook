@@ -8,26 +8,11 @@
 # @api private
 #
 class puppetwebhook::service {
-  include systemd
 
-  systemd::unit_file { 'puppet_webhook.service':
-    ensure  => 'present',
-    content => epp('puppetwebhook/puppet_webhook.service.epp', {
-        'user'        => $puppetwebhook::webhook_user,
-        'webhook_bin' => $puppetwebhook::binfile,
-        'env_path'    => $puppetwebhook::envfile_path,
-      }
-    ),
-  }
-
-  service { 'puppet_webhook':
-    ensure     => running,
+  service { 'puppet-webhook':
+    ensure     => 'running',
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    subscribe  => [
-      Package['puppet_webhook'],
-      Systemd::Unit_file['puppet_webhook.service'],
-    ],
   }
 }

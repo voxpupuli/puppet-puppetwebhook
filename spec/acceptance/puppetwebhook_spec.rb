@@ -1,81 +1,126 @@
 require 'spec_helper_acceptance'
 
 describe 'puppetwebhook' do
-  it 'applies' do
-    pp = <<-MANIFEST
-    class { 'puppetwebhook': }
-    MANIFEST
+  redis_name = case fact('os.family')
+               when 'Debian'
+                 'redis-server'
+               else
+                 'redis'
+               end
+  it 'installs redis dependency' do
+    pp = 'include redis'
 
     apply_manifest(pp, catch_failures: true)
     apply_manifest(pp, catch_changes: true)
   end
 
-  describe package('puppet_webhook') do
-    let(:path) { '$PATH:/opt/puppetlabs/puppet/bin' }
+  it 'applies' do
+    pp = 'include puppetwebhook'
 
-    it { is_expected.to be_installed.by('gem') }
+    apply_manifest(pp, catch_failures: true)
+    apply_manifest(pp, catch_changes: true)
+  end
+
+  describe package('puppet-webhook') do
+    it { is_expected.to be_installed }
   end
 
   describe group('puppet_webhook') do
-    it { is_expected.to exist }
+    it 'is almost implemented' do
+      pending('creating a group is currently not implemented in the rpm/deb packages')
+      is_expected.to exist
+    end
   end
 
   describe user('puppet_webhook') do
-    it { is_expected.to exist }
-    it { is_expected.to belong_to_primary_group('puppet_webhook') }
-  end
-
-  describe file('/etc/puppet_webhook') do
-    it { is_expected.to be_directory }
-  end
-
-  describe file('/etc/puppet_webhook/server.yml') do
-    it { is_expected.to be_file }
-    it { is_expected.to be_owned_by('root') }
-    it { is_expected.to be_grouped_into('puppet_webhook') }
-    it { is_expected.to be_mode(640) }
-    its(:content_as_yaml) do
-      is_expected.to include(
-        'server_type' => 'simple',
-        'host' => '0.0.0.0',
-        'logfile' => '/etc/puppet_webhook/webhook.log',
-        'loglevel' => 'WARN',
-        'pidfile' => '/var/run/puppet_webhook.pid',
-        'port' => 8088,
-        'enable_ssl' => false,
-      )
+    it 'is almost implemented' do
+      pending('creating a user is currently not implemented in the rpm/deb packages')
+      is_expected.to exist
+      is_expected.to belong_to_primary_group('puppet_webhook')
     end
   end
 
-  describe file('/etc/puppet_webhook/app.yml') do
+  describe file('/etc/voxpupuli/webhook.yaml') do
     it { is_expected.to be_file }
     it { is_expected.to be_owned_by('root') }
-    it { is_expected.to be_grouped_into('puppet_webhook') }
-    it { is_expected.to be_mode(640) }
+    it { is_expected.to be_mode(644) }
     its(:content_as_yaml) do
       is_expected.to include(
-        'protected' => true,
-        'user' => 'root',
-        'pass' => 'puppet',
-        'use_mcollective' => false,
-        'chatops' => false,
-        'default_branch' => 'production',
-        'r10k_deploy_arguments' => '-pv',
+        'production' => include(
+          'protected' => true,
+          'user' => 'puppet',
+          'pass' => 'puppet',
+          'chatops' => false,
+          'default_branch' => 'production',
+          'ignore_environments' => [],
+          'allow_uppercase' => true,
+          'loglevel' => 'info',
+        ),
       )
+    end
+    it 'is almost implemented' do
+      pending('creating a group is currently not implemented in the rpm/deb packages')
+      is_expected.to be_grouped_into('puppet_webhook')
     end
   end
 
-  describe service('puppet_webhook') do
+  describe service('puppet-webhook') do
     it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
   end
 
-  if os[:family] =~ %r{(redhat|suse)}
-    describe file('/etc/sysconfig/puppet_webhook') do
-      it { is_expected.to be_file }
-    end
-  elsif os[:family] == 'debian'
-    describe file('/etc/default/puppet_webhook') do
-      it { is_expected.to be_file }
-    end
+  describe service('puppet-webhook-app') do
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
+  end
+
+  describe service('puppet-webhook-sidekiq') do
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
+  end
+
+  describe service(redis_name) do
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
+  end
+end
+
+describe 'puppetwebhook with redis 5', if: fact('os.family') == 'RedHat' do
+  it 'installs redis dependency' do
+    pp = <<-EOS
+    class{'redis::globals':
+      scl => 'rh-redis5',
+    }
+    include puppetwebhook
+    class{'redis':
+      manage_repo => true,
+      notify => Service['puppet-webhook'],
+    }
+    EOS
+
+    pending('Redis 5 support is broken in voxpupuli/redis module')
+    apply_manifest(pp, catch_failures: true)
+    apply_manifest(pp, catch_changes: true)
+  end
+
+  describe service('puppet-webhook') do
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
+  end
+
+  describe service('puppet-webhook-app') do
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
+  end
+
+  describe service('puppet-webhook-sidekiq') do
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
+  end
+
+  describe service('rh-redis5-redis') do
+    #pending('Redis 5 support is broken in voxpupuli/redis module')
+    it { is_expected.to be_running }
+    it { is_expected.to be_enabled }
   end
 end
