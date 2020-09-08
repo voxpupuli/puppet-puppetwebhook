@@ -102,6 +102,8 @@
 #   Path to the puppet_webhook binary
 # @param r10k_path
 #   Path to r10k binary folder. Defaults to `/opt/puppetlabs/puppet/bin`
+# @param envfile_path
+#   Path where to setup environment variables
 # @param webhook_user
 #   User to run puppet_webhook as
 # @param webhook_group
