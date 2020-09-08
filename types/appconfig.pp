@@ -1,3 +1,5 @@
+# @summary Handle configuration of the Sinatra-based application.
+#
 type Puppetwebhook::Appconfig = Struct[{
   protected                     => Boolean,
   user                          => String[1],

@@ -1,3 +1,5 @@
+# @summary Handle configuration of Webhook server.
+#
 type Puppetwebhook::Serverconfig = Struct[{
   server_type          => Enum['simple', 'daemon'],
   host                 => Stdlib::IP::Address,
