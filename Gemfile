@@ -37,6 +37,7 @@ group :system_tests do
   gem "beaker-hostgenerator"
   gem "beaker-rspec"
   gem "beaker-puppet"
+  gem 'beaker-docker'
 end
 group :release do
   gem "pdk", require: false
