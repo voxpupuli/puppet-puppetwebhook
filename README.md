@@ -28,7 +28,7 @@ puppet-puppetwebhook will install the `puppet_webhook` gem, configure the gem, a
 ## Setup
 
 ### The Module manages the following:
-* [puppet_webhook](https://github.com/voxpupuli/puppet_webhook) API server Ruby gem
+* [puppet_webhook](https://github.com/voxpupuli/puppet_webhook)
 * puppet_webhook configuration
 * puppet_webhook service
 
@@ -53,12 +53,30 @@ class { 'puppetwebhook':
 
 ## Limitations
 
-Currently does not support the following:
+The rpm/deb packages expect that you provide a running redis instance.
 
-* Installation of RPM or DEB packages (planned)
-* Enable/Disable Service management (planned)
-* Enable/Disable Package management (planned)
-* Expects SystemD, no SysVInit or Upstart service is created.
+You can install redis from different sources. One solution is our own puppet
+module [voxpupuli/redis](https://forge.puppet.com/puppet/redis). After
+deploying this to your environment, simply do a `include redis` to deploy
+redis listing only to localhost.
+
+On Debian-like systems you need to install the
+[puppetlabs/apt](https://forge.puppet.com/puppetlabs/apt) module.
+
+On RedHat-like systems you need to enable epel. To do so you can use our
+[voxpupuli/epel](https://forge.puppet.com/puppet/epel) module, or something like
+
+```sh
+puppet resource package epel-release ensure=present
+```
+
+in the CLI or this in your profile:
+
+```puppet
+package { 'epel-release':
+  ensure => 'installed',
+}
+```
 
 ## Development
 

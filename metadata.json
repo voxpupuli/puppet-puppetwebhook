@@ -4,7 +4,7 @@
   "author": "voxpupuli",
   "summary": "Manage the installation and configuration of the puppet_webhook gem",
   "license": "Apache-2.0",
-  "source": "git@github.com:voxpupuli/puppet-puppetwebhook.git",
+  "source": "https://github.com/voxpupuli/puppet-puppetwebhook.git",
   "project_page": "https://github.com/voxpupuli/puppet-puppetwebhook",
   "issues_url": "https://github.com/voxpupuli/puppet-puppetwebhook/issues",
   "dependencies": [
@@ -45,7 +45,6 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8",
         "9"
       ]
     },
@@ -55,25 +54,12 @@
         "16.04",
         "18.04"
       ]
-    },
-    {
-      "operatingsystem": "Fedora",
-      "operatingsystemrelease": [
-        "27",
-        "28"
-      ]
-    },
-    {
-      "operatingsystem": "SLES",
-      "operatingsystemrelease": [
-        "12"
-      ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.10 < 7.0.0"
+      "version_requirement": ">= 6.1.0 < 7.0.0"
     }
   ],
   "pdk-version": "1.8.0",

@@ -1,6 +1,6 @@
 ---
-sudo: false
-dist: trusty
+os: linux
+dist: focal
 language: ruby
 cache: bundler
 before_install:
@@ -17,99 +17,37 @@ rvm:
 env:
   global:
     - BEAKER_PUPPET_COLLECTION=puppet6 PUPPET_GEM_VERSION="~> 6.0"
-matrix:
+jobs:
   fast_finish: true
   include:
     -
       bundler_args: --without release
-      dist: trusty
-      env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=ubuntu1804-64{hypervisor=docker} BEAKER_TESTMODE=apply
-      rvm: 2.4.4
-      script: bundle exec rake beaker
-      services: docker
-      sudo: required
-    -
-      bundler_args: --without release
-      dist: trusty
       env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=ubuntu1804-64{hypervisor=docker} BEAKER_TESTMODE=apply
       rvm: 2.5.1
       script: bundle exec rake beaker
       services: docker
-      sudo: required
     -
       bundler_args: --without release
-      dist: trusty
-      env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=ubuntu1604-64{hypervisor=docker} BEAKER_TESTMODE=apply
-      rvm: 2.4.4
-      script: bundle exec rake beaker
-      services: docker
-      sudo: required
-    -
-      bundler_args: --without release
-      dist: trusty
       env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=ubuntu1604-64{hypervisor=docker} BEAKER_TESTMODE=apply
       rvm: 2.5.1
       script: bundle exec rake beaker
       services: docker
-      sudo: required
     -
       bundler_args: --without release
-      dist: trusty
-      env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=centos7-64{hypervisor=docker} BEAKER_TESTMODE=apply
-      rvm: 2.4.4
-      script: bundle exec rake beaker
-      services: docker
-      sudo: required
-    -
-      bundler_args: --without release
-      dist: trusty
       env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=centos7-64{hypervisor=docker} BEAKER_TESTMODE=apply
       rvm: 2.5.1
       script: bundle exec rake beaker
       services: docker
-      sudo: required
     -
       bundler_args: --without release
-      dist: trusty
-      env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=debian9-64{hypervisor=docker} BEAKER_TESTMODE=apply
-      rvm: 2.4.4
-      script: bundle exec rake beaker
-      services: docker
-      sudo: required
-    -
-      bundler_args: --without release
-      dist: trusty
       env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=debian9-64{hypervisor=docker} BEAKER_TESTMODE=apply
       rvm: 2.5.1
       script: bundle exec rake beaker
       services: docker
-      sudo: required
-    -
-      bundler_args: --without release
-      dist: trusty
-      env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=debian8-64{hypervisor=docker} BEAKER_TESTMODE=apply
-      rvm: 2.4.4
-      script: bundle exec rake beaker
-      services: docker
-      sudo: required
-    -
-      bundler_args: --without release
-      dist: trusty
-      env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=debian8-64{hypervisor=docker} BEAKER_TESTMODE=apply
-      rvm: 2.5.1
-      script: bundle exec rake beaker
-      services: docker
-      sudo: required
     -
       env: CHECK="syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop"
     -
       env: CHECK=parallel_spec
-    -
-      env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
-      rvm: 2.4.4
-    -
-      env: PUPPET_VERSION="~> 5.0" CHECK=build DEPLOY_TO_FORGE=yes
-      rvm: 2.4.4
 branches:
   only:
     - master
@@ -123,7 +61,7 @@ notifications:
     - chat.freenode.org#voxpupuli-notifications
 deploy:
   provider: puppetforge
-  user: puppet
+  username: puppet
   password:
     secure: "0EBUR60jTMljMKtTZCKOLBdYTNqpeVazUXwJ9HcYJq0hR4k3bIVAO79Q5It78Qycqhren/XBM48+tEcUOcBV6eFcqLBGHO94TIoYLk6g+QmMpfI8Bzp8oFteLMs3HAE6H0j+BDamc8ppfTjxBUq1bxG9Axlw3rafxeOrF+CJnOXB1tyOvyv7/EOsF52d4yWDRqg0PlmzSFXAzdt7RN/7Jb/9HCHP73GPJwx+fEav9KTkcCWJsKhe3vYrXlNPjqJb4T1lm10W7TE0PRricgasjsg0P0KMAjvwWpXbAySWxx171HC6V0nZY9ORp8Pgvx67idX+XxUXTA/X0rf8IW1GXDF0O+VOfbPrxQRgFG+B/wZhVosOyfJnPlYlfDODQI7GgbGFNf5mh8qno9KqAHBDyd0uzTum1QY+NpOvEMN2wHv4BNTmwgpkLtdsWBrEVu71WS8XMiAjaNkNf85F3K9A7uuefG4LckqhHe3yAlPQ9mPv2CaAw3XKQdwJxULQJlwtFZmTBWPaRyPyHr0v3Uq0PCvXfKwvy1OQlvwq2RUInCPMbN7aroTv6ywBjg+F6+R0kirApXSyiqNrdcw+nVr+sDopDCKLp12WRzE5yIwO7Gzvw6w4dbhaSRKag6jJdNTjJRZtDtVc2CkmYY7TDtMxI0miTyLTLR7gXjM9Z6Z4690="
   on:
