@@ -25,12 +25,12 @@ class puppetwebhook::install {
       }
       'Debian': {
         include apt
-        apt::key{'voxpupuli':
+        apt::key { 'voxpupuli':
           ensure => 'present',
           source => 'https://bintray.com/user/downloadSubjectPublicKey?username=voxpupuli',
           id     => '3DF0F236D8585A6A3D931AF793994CEF2A6DEAC4',
         }
-        -> apt::source {'voxpupuli':
+        -> apt::source { 'voxpupuli':
           ensure   => 'present',
           comment  => 'Vox Pupuli repository for puppet-webhook',
           location => 'https://dl.bintray.com/voxpupuli/deb',
