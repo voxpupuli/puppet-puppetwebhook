@@ -107,8 +107,8 @@
 # @param webhook_group
 #   Group to run puppet_webhook as
 #
-class puppetwebhook(
-  Hash $app_cfg = {'production' => {'protected' => true, 'user' => 'puppet', 'pass' => 'puppet', 'chatops' => false, 'default_branch' => 'production', 'ignore_environments' => [], 'allow_uppercase' => true, 'loglevel' => 'info'}},
+class puppetwebhook (
+  Hash $app_cfg = { 'production' => { 'protected' => true, 'user' => 'puppet', 'pass' => 'puppet', 'chatops' => false, 'default_branch' => 'production', 'ignore_environments' => [], 'allow_uppercase' => true, 'loglevel' => 'info' } },
   Boolean $manage_package = true,
   Boolean $manage_repo = true,
 ) {
@@ -119,7 +119,6 @@ class puppetwebhook(
   }
   contain puppetwebhook::config
   contain puppetwebhook::service
-
 
   Class['puppetwebhook::config']
   ~> Class['puppetwebhook::service']

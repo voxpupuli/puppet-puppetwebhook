@@ -8,7 +8,6 @@
 # @api private
 #
 class puppetwebhook::service {
-
   service { 'puppet-webhook':
     ensure     => 'running',
     enable     => true,

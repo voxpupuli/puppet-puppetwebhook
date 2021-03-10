@@ -11,7 +11,7 @@ describe 'puppetwebhook' do
       it { is_expected.to contain_class('puppetwebhook::service') }
       it 'contains webhook package' do
         is_expected.to contain_package('puppet-webhook').with(
-          ensure: 'installed',
+          ensure: 'installed'
         )
       end
 
@@ -20,7 +20,7 @@ describe 'puppetwebhook' do
           ensure: 'file',
           owner: 'root',
           group: 'root',
-          mode: '0644',
+          mode: '0644'
         )
       end
     end
