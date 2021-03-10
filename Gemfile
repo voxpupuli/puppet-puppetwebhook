@@ -38,6 +38,7 @@ group :system_tests do
   gem "beaker-rspec"
   gem "beaker-puppet"
   gem 'beaker-docker'
+  gem 'beaker-puppet_install_helper'
 end
 group :release do
   gem "pdk", require: false
