@@ -1,6 +1,6 @@
 {
   "name": "puppet-puppetwebhook",
-  "version": "2.0.0",
+  "version": "2.0.1-rc0",
   "author": "voxpupuli",
   "summary": "Manage the installation and configuration of the puppet_webhook gem",
   "license": "Apache-2.0",
