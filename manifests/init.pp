@@ -25,32 +25,6 @@
 #     host: '192.168.100.5'
 #     loglevel: 'WARN'
 #
-# @param pkg_provider
-#   Which provider to install puppetwebhook into
-# @param pkg_version
-#   Install a specific version of the puppet_webhook
-# @param server_cfg
-#   Hash of Server configuration options
-# @option server_cfg [Enum['simple', 'daemon']] :server_type
-#   Run the API server as a daemon or not
-# @option server_cfg [Stdlib::IP::Address] :host
-#   IP address to the API server will listen on.
-# @option server_cfg [Stdlib::Absolutepath] :logfile
-#   Path to log file.
-# @option server_cfg [Enum['WARN', 'INFO', 'DEBUG', 'ERROR']] :loglevel
-#   Log level of the server.
-# @option server_cfg [Stdlib::Absolutepath] :pidfile
-#   Path to the PID file.
-# @option server_cfg [Stdlib::Port] :port
-#   Port the API server will listen on.
-# @option server_cfg [Boolean] :enable_ssl
-#   Enable SSL or not.
-# @option server_cfg [Boolean] :ssl_verify
-#   Verify SSL certificate or not. Optional.
-# @option server_cfg [Stdlib::Absolutepath] :ssl_cert
-#   Path to the SSL cert. Optional.
-# @option server_cfg [Stdlib::Absolutepath] :ssl_key
-#   Path to the SSL Private key. Optional.
 # @param app_cfg
 #   Hash of application configuration options
 # @option app_cfg [Boolean] :protected
@@ -98,14 +72,10 @@
 #   supported for Github repos. Optional.
 # @option app_cfg [Array] :repository_events
 #   Array of webhook events to ignore. Optional.
-# @param binfile
-#   Path to the puppet_webhook binary
-# @param r10k_path
-#   Path to r10k binary folder. Defaults to `/opt/puppetlabs/puppet/bin`
-# @param webhook_user
-#   User to run puppet_webhook as
-# @param webhook_group
-#   Group to run puppet_webhook as
+# @param manage_package
+#   Enable/Disable the management of the package
+# @param manage_repo
+#   weather we should manage the repository for puppet_webhook or not
 #
 class puppetwebhook (
   Hash $app_cfg = { 'production' => { 'protected' => true, 'user' => 'puppet', 'pass' => 'puppet', 'chatops' => false, 'default_branch' => 'production', 'ignore_environments' => [], 'allow_uppercase' => true, 'loglevel' => 'info' } },

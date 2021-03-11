@@ -1,3 +1,6 @@
+#
+# @summary custom type to enforce the config for the whole application
+#
 type Puppetwebhook::Appconfig = Struct[{
   protected                     => Boolean,
   user                          => String[1],
