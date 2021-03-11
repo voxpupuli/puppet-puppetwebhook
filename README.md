@@ -1,13 +1,14 @@
 
 # puppetwebhook
 
-[![Travis branch](https://img.shields.io/travis/voxpupuli/puppet-puppetwebhook/master.svg?style=flat-square)](https://travis-ci.org/voxpupuli/puppet-puppetwebhook)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppetlabs.com/puppet/puppetwebhook)
 [![Puppet Forge](https://img.shields.io/puppetforge/dt/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppet.com/puppet/puppetwebhook)
 [![Puppet Forge](https://img.shields.io/puppetforge/e/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppet.com/puppet/puppetwebhook)
 [![Puppet Forge](https://img.shields.io/puppetforge/f/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppet.com/puppet/puppetwebhook)
 
-Puppet module for installing and managing Vox Pupuli's `puppet_webhook` API Server.
+Puppet module for installing and managing Vox Pupuli's [puppet_webhook](https://github.com/voxpupuli/puppet_webhook#puppet-webhook-server) API Server.
+
+**Version 2 and newer of this module manage the new puppet_webhook project, which is a Ruby application, packaged as rpms/debs. Version 1 only supports the deprecated puppet_webhook gem**
 
 #### Table of Contents
 
@@ -22,12 +23,12 @@ Puppet module for installing and managing Vox Pupuli's `puppet_webhook` API Serv
 
 ## Description
 
-puppet-puppetwebhook will install the `puppet_webhook` gem, configure the gem, and create a SystemD service file and start said service.
-
+puppet-puppetwebhook will install the `puppet_webhook` Ruby project, configure it and start said service.
 
 ## Setup
 
 ### The Module manages the following:
+
 * [puppet_webhook](https://github.com/voxpupuli/puppet_webhook)
 * puppet_webhook configuration
 * puppet_webhook service
@@ -44,13 +45,6 @@ With all default parameter values, this installs, enables, and starts the
 `puppet_webhook` service. The package provider, user/group that owns the process
 and files, and the configuration options themselves.
 
-Install `puppet_webhook` as a general ruby gem instead of in the Puppet ruby environment
-``` puppet
-class { 'puppetwebhook':
-  pkg_provider => 'gem',
-}
-```
-
 ## Limitations
 
 The rpm/deb packages expect that you provide a running redis instance.
@@ -58,7 +52,19 @@ The rpm/deb packages expect that you provide a running redis instance.
 You can install redis from different sources. One solution is our own puppet
 module [voxpupuli/redis](https://forge.puppet.com/puppet/redis). After
 deploying this to your environment, simply do a `include redis` to deploy
-redis listing only to localhost.
+redis listening only on localhost. One exception is CentOS, where the shipped
+Redis version is too old. But you can enable the SCL repository:
+
+```puppet
+class{ 'redis::globals':
+  scl => 'rh-redis5',
+}
+include puppetwebhook
+class{ 'redis':
+  manage_repo => true,
+  notify => Service['puppet-webhook'],
+}
+```
 
 On Debian-like systems you need to install the
 [puppetlabs/apt](https://forge.puppet.com/puppetlabs/apt) module.
