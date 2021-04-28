@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.1.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/v2.1.0) (2021-04-28)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-puppetwebhook/compare/v2.0.0...v2.1.0)
+
+**Implemented enhancements:**
+
+- puppet/redis: Allow 7.x [\#42](https://github.com/voxpupuli/puppet-puppetwebhook/pull/42) ([bastelfreak](https://github.com/bastelfreak))
+- puppetlabs/stdlib: Allow 7.x [\#41](https://github.com/voxpupuli/puppet-puppetwebhook/pull/41) ([bastelfreak](https://github.com/bastelfreak))
+- camptocamp/systemd: allow 3.x [\#40](https://github.com/voxpupuli/puppet-puppetwebhook/pull/40) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v2.0.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/v2.0.0) (2021-03-11)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-puppetwebhook/compare/v1.2.0...v2.0.0)
@@ -42,7 +52,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- Release 1.2.0 [\#19](https://github.com/voxpupuli/puppet-puppetwebhook/pull/19) ([alexjfisher](https://github.com/alexjfisher))
 - Fix `source` in metadata.json [\#13](https://github.com/voxpupuli/puppet-puppetwebhook/pull/13) ([alexjfisher](https://github.com/alexjfisher))
 
 ## [v1.1.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/v1.1.0) (2019-01-17)
