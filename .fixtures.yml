@@ -7,6 +7,7 @@ fixtures:
     systemd: https://github.com/camptocamp/puppet-systemd.git
     apt: https://github.com/puppetlabs/puppetlabs-apt.git
     yum: https://github.com/voxpupuli/puppet-yum.git
+    augeas_core: https://github.com/puppetlabs/puppetlabs-augeas_core.git
     yumrepo_core:
       repo: https://github.com/puppetlabs/puppetlabs-yumrepo_core.git
       puppet_version: ">= 6.0.0"
