@@ -76,11 +76,14 @@
 #   Enable/Disable the management of the package
 # @param manage_repo
 #   weather we should manage the repository for puppet_webhook or not
+# @param version
+#   version of puppet_webhook to install
 #
 class puppetwebhook (
   Hash $app_cfg = { 'production' => { 'protected' => true, 'user' => 'puppet', 'pass' => 'puppet', 'chatops' => false, 'default_branch' => 'production', 'ignore_environments' => [], 'allow_uppercase' => true, 'loglevel' => 'info' } },
   Boolean $manage_package = true,
   Boolean $manage_repo = true,
+  String $version = '2.1.3',
 ) {
   if $manage_package {
     contain puppetwebhook::install
