@@ -50,10 +50,6 @@ class puppetwebhook::install {
         '9': {
           $version = 'stretch'
         }
-        '16.04': {
-          warning("Ubuntu ${facts['os']['release']['major']} is End of Life. Use at your own risk.")
-          $version = 'xenial'
-        }
         '18.04','18.10','19.04','19.10': {
           $version = 'bionic'
         }
