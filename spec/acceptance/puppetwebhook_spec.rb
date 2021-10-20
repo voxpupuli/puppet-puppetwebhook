@@ -1,5 +1,5 @@
 require 'spec_helper_acceptance'
-# rubocop:disable RSpec/MultipleDescribes
+
 describe 'puppetwebhook' do
   redis_name = case fact('os.family')
                when 'Debian'
