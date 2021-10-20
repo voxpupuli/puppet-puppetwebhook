@@ -1,5 +1,5 @@
 require 'spec_helper_acceptance'
-# rubocop:disable RSpec/MultipleDescribes
+
 describe 'puppetwebhook' do
   redis_name = case fact('os.family')
                when 'Debian'
@@ -85,43 +85,43 @@ describe 'puppetwebhook' do
   end
 end
 
-describe 'puppetwebhook with redis 5', if: fact('os.family') == 'RedHat' do
-  it 'installs redis dependency' do
-    pp = <<-EOS
-    class{'redis::globals':
-      scl => 'rh-redis5',
-    }
-    include puppetwebhook
-    class{'redis':
-      manage_repo => true,
-      notify => Service['puppet-webhook'],
-    }
-    EOS
+# describe 'puppetwebhook with redis 5', if: fact('os.family') == 'RedHat' do
+#   it 'installs redis dependency' do
+#     pp = <<-EOS
+#     class{'redis::globals':
+#       scl => 'rh-redis5',
+#     }
+#     include puppetwebhook
+#     class{'redis':
+#       manage_repo => true,
+#       notify => Service['puppet-webhook'],
+#     }
+#     EOS
 
-    pending('Redis 5 support is broken in voxpupuli/redis module')
-    apply_manifest(pp, catch_failures: true)
-    apply_manifest(pp, catch_changes: true)
-  end
+#     pending('Redis 5 support is broken in voxpupuli/redis module')
+#     apply_manifest(pp, catch_failures: true)
+#     apply_manifest(pp, catch_changes: true)
+#   end
 
-  describe service('puppet-webhook') do
-    it { is_expected.to be_running }
-    it { is_expected.to be_enabled }
-  end
+#   describe service('puppet-webhook') do
+#     it { is_expected.to be_running }
+#     it { is_expected.to be_enabled }
+#   end
 
-  describe service('puppet-webhook-app') do
-    it { is_expected.to be_running }
-    it { is_expected.to be_enabled }
-  end
+#   describe service('puppet-webhook-app') do
+#     it { is_expected.to be_running }
+#     it { is_expected.to be_enabled }
+#   end
 
-  describe service('puppet-webhook-sidekiq') do
-    it { is_expected.to be_running }
-    it { is_expected.to be_enabled }
-  end
+#   describe service('puppet-webhook-sidekiq') do
+#     it { is_expected.to be_running }
+#     it { is_expected.to be_enabled }
+#   end
 
-  describe service('rh-redis5-redis') do
-    pending('redis fails to start in docker, only on docker') do
-      it { is_expected.to be_running }
-    end
-    it { is_expected.to be_enabled }
-  end
-end
+#   describe service('rh-redis5-redis') do
+#     pending('redis fails to start in docker, only on docker') do
+#       it { is_expected.to be_running }
+#     end
+#     it { is_expected.to be_enabled }
+#   end
+# end
