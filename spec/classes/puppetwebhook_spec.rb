@@ -9,6 +9,7 @@ describe 'puppetwebhook' do
       it { is_expected.to contain_class('puppetwebhook::install') }
       it { is_expected.to contain_class('puppetwebhook::config') }
       it { is_expected.to contain_class('puppetwebhook::service') }
+
       it 'contains webhook package' do
         is_expected.to contain_package('puppet-webhook').with(
           ensure: 'installed'
