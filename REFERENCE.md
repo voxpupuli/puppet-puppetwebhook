@@ -18,7 +18,7 @@
 
 ### Data types
 
-* [`Puppetwebhook::Appconfig`](#puppetwebhookappconfig): custom type to enforce the config for the whole application
+* [`Puppetwebhook::Appconfig`](#Puppetwebhook--Appconfig): custom type to enforce the config for the whole application
 
 ## Classes
 
@@ -62,11 +62,12 @@ puppetwebhook::server_cfg:
 
 The following parameters are available in the `puppetwebhook` class:
 
-* [`app_cfg`](#app_cfg)
-* [`manage_package`](#manage_package)
-* [`manage_repo`](#manage_repo)
+* [`app_cfg`](#-puppetwebhook--app_cfg)
+* [`manage_package`](#-puppetwebhook--manage_package)
+* [`manage_repo`](#-puppetwebhook--manage_repo)
+* [`version`](#-puppetwebhook--version)
 
-##### <a name="app_cfg"></a>`app_cfg`
+##### <a name="-puppetwebhook--app_cfg"></a>`app_cfg`
 
 Data type: `Hash`
 
@@ -100,25 +101,33 @@ supported for Github repos. Optional.
 
 Default value: `{ 'production' => { 'protected' => true, 'user' => 'puppet', 'pass' => 'puppet', 'chatops' => false, 'default_branch' => 'production', 'ignore_environments' => [], 'allow_uppercase' => true, 'loglevel' => 'info' } }`
 
-##### <a name="manage_package"></a>`manage_package`
+##### <a name="-puppetwebhook--manage_package"></a>`manage_package`
 
 Data type: `Boolean`
 
 Enable/Disable the management of the package
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_repo"></a>`manage_repo`
+##### <a name="-puppetwebhook--manage_repo"></a>`manage_repo`
 
 Data type: `Boolean`
 
 weather we should manage the repository for puppet_webhook or not
 
-Default value: ``true``
+Default value: `true`
+
+##### <a name="-puppetwebhook--version"></a>`version`
+
+Data type: `String`
+
+version of puppet_webhook to install
+
+Default value: `'2.1.3'`
 
 ## Data types
 
-### <a name="puppetwebhookappconfig"></a>`Puppetwebhook::Appconfig`
+### <a name="Puppetwebhook--Appconfig"></a>`Puppetwebhook::Appconfig`
 
 custom type to enforce the config for the whole application
 
