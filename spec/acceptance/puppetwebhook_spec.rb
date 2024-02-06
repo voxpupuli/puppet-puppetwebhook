@@ -44,6 +44,7 @@ describe 'puppetwebhook' do
     it { is_expected.to be_file }
     it { is_expected.to be_owned_by('root') }
     it { is_expected.to be_mode(644) }
+
     its(:content_as_yaml) do
       is_expected.to include(
         'production' => include(
@@ -58,6 +59,7 @@ describe 'puppetwebhook' do
         )
       )
     end
+
     it 'is almost implemented' do
       pending('creating a group is currently not implemented in the rpm/deb packages')
       is_expected.to be_grouped_into('puppet_webhook')
