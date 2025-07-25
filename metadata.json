@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 4.10.0 < 9.0.0"
+      "version_requirement": ">= 4.10.0 < 10.0.0"
     },
     {
       "name": "puppet-systemd",
@@ -37,15 +37,8 @@
       ]
     },
     {
-      "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9",
         "10"
       ]
     },
@@ -61,6 +54,10 @@
     {
       "name": "puppet",
       "version_requirement": ">= 7.0.0 < 9.0.0"
+    },
+    {
+      "name": "openvox",
+      "version_requirement": ">= 7.0.0 < 8.0.0"
     }
   ],
   "pdk-version": "1.8.0",
