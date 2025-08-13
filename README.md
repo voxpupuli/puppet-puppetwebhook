@@ -1,4 +1,8 @@
 
+> [!IMPORTANT]
+> This module has been archived on 2025-08-13 (See discussion in [#53](https://github.com/voxpupuli/puppet-puppetwebhook/issues/53)).
+
+
 # puppetwebhook
 
 [![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/puppetwebhook.svg?style=flat-square)](https://forge.puppetlabs.com/puppet/puppetwebhook)
