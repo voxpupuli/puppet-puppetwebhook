@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.2.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/v2.2.0) (2026-10-28)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-puppetwebhook/compare/v2.1.0...v2.2.0)
+
+**Breaking changes:**
+
+- Drop puppet, update openvox minimum version to 8.19 [\#58](https://github.com/voxpupuli/puppet-puppetwebhook/pull/58) ([TheMeier](https://github.com/TheMeier))
+- Drop Puppet 6 support [\#50](https://github.com/voxpupuli/puppet-puppetwebhook/pull/50) ([bastelfreak](https://github.com/bastelfreak))
+- Reworks package installs and allow up to date dependencies [\#46](https://github.com/voxpupuli/puppet-puppetwebhook/pull/46) ([smortex](https://github.com/smortex))
+
+**Implemented enhancements:**
+
+- puppet/systemd: Allow 11.x [\#61](https://github.com/voxpupuli/puppet-puppetwebhook/pull/61) ([bastelfreak](https://github.com/bastelfreak))
+- puppet/systemd: Allow 8.x and older [\#57](https://github.com/voxpupuli/puppet-puppetwebhook/pull/57) ([TheMeier](https://github.com/TheMeier))
+- metadata.json: Add OpenVox [\#55](https://github.com/voxpupuli/puppet-puppetwebhook/pull/55) ([jstraw](https://github.com/jstraw))
+- puppetlabs/stdlib: Allow 9.x [\#51](https://github.com/voxpupuli/puppet-puppetwebhook/pull/51) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- https://dl.bintray.com/voxpupuli/rpm/el/8/x86\_64/repodata/repomd.xml throws 403 [\#44](https://github.com/voxpupuli/puppet-puppetwebhook/issues/44)
+
+**Merged pull requests:**
+
+- Replace C2C with VP systemd in fixtures [\#48](https://github.com/voxpupuli/puppet-puppetwebhook/pull/48) ([dhollinger](https://github.com/dhollinger))
+
 ## [v2.1.0](https://github.com/voxpupuli/puppet-puppetwebhook/tree/v2.1.0) (2021-04-28)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-puppetwebhook/compare/v2.0.0...v2.1.0)
